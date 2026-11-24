@@ -18,3 +18,32 @@ mlruns/
 
 # OS files
 Thumbs.db
+# Portfolio deployment assets
+# Heart Disease
+!heart_disease_prediction/heart_disease.csv
+!heart_disease_prediction/artifacts/
+!heart_disease_prediction/artifacts/**
+heart_disease_prediction/artifacts/run.log
+heart_disease_prediction/reports/
+
+# Food Delivery
+!Food-prediction/Food delivery.csv
+!Food-prediction/new_orders.csv
+!Food-prediction/xgb_best.pkl
+!Food-prediction/standard_scaler.pkl
+!Food-prediction/models/
+!Food-prediction/models/**
+!Food-prediction/reports/
+!Food-prediction/reports/**
+
+# Emotion Intelligence
+!emotion_Intelligence/artifacts/
+!emotion_Intelligence/artifacts/**
+!emotion_Intelligence/artifacts/bidirectional_gru_model.keras
+!emotion_Intelligence/artifacts/tokenizer.pkl
+
+# Customer Churn
+!customer-churn-prediction/Telco-Customer-Churn.csv
+!customer-churn-prediction/churn_model.pkl
+!customer-churn-prediction/scaler.pkl
+!customer-churn-prediction/threshold.pkl
