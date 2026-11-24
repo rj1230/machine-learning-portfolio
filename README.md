@@ -1,214 +1,186 @@
+<div align="center">
+
 # Machine Learning Portfolio
 
-End-to-end machine learning projects demonstrating model development, rigorous evaluation, interpretability, reproducibility, and deployable applications.
+### End-to-end machine-learning systems for prediction, sequence modeling, and deployment
 
-The portfolio includes supervised classification, deep learning, risk prediction, and interactive application development using Python, scikit-learn, XGBoost, TensorFlow/Keras, Streamlit, and FastAPI.
+A curated collection of machine-learning projects covering clinical risk prediction, delivery-time forecasting, customer analytics, natural-language classification, and model deployment.
 
-## Featured Project
+[![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-Machine_Learning-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-Gradient_Boosting-EC6C2C)](https://xgboost.readthedocs.io/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Inference_Service-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live_Demos-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-### Heart Disease Risk Prediction
+</div>
 
-A leakage-safe, end-to-end machine-learning pipeline that predicts the likelihood of angiographic heart disease from clinical features. The project includes data-quality auditing, model comparison, threshold optimization, calibration, interpretability, cross-site validation, and a FastAPI inference service.
+---
 
-**Key results**
+## Overview
 
-| Metric | Held-out test performance |
-|---|---:|
-| ROC-AUC | 0.970 |
-| PR-AUC | 0.973 |
-| Recall / sensitivity | 89.7% |
-| Specificity | 92.2% |
-| Accuracy | 90.8% |
-| F1 score | 91.6% |
-| Decision threshold | 0.652 |
+This repository demonstrates the complete machine-learning development lifecycle: problem framing, data preparation, model development, evaluation, interpretation, and deployment.
 
-**Highlights**
+The projects emphasize leakage-safe validation, calibrated probabilistic outputs, robustness analysis, feature attribution, and production-oriented serving through APIs or interactive web applications.
 
-- Processed 100,000 multi-site clinical records with data validation, missing-value handling, and physiologically implausible-value detection.
-- Compared logistic regression, random forest, histogram gradient boosting, and XGBoost using stratified cross-validation and randomized hyperparameter search.
-- Selected XGBoost, which achieved a cross-validated ROC-AUC of 0.971.
-- Optimized the classification threshold on out-of-fold predictions to maintain at least 90% recall while maximizing specificity.
-- Evaluated model reliability using calibration curves, Brier score, PR-AUC, bootstrap confidence intervals, and confusion-matrix analysis.
-- Assessed generalization with leave-one-site-out validation across four clinical cohorts.
-- Generated permutation feature importance and subgroup performance metrics by sex and clinical site.
-- Produced reproducible artifacts, including a serialized model bundle, metrics report, data-quality report, evaluation plots, and model card.
-- Built a FastAPI inference service with input validation, single and batch prediction endpoints, health checks, and interactive API documentation.
+> **Objective:** Build machine-learning systems that are measurable, interpretable, reproducible, and ready for practical use.
 
-**Top predictive features**
+## Live Demos
 
-`cp`, `exang`, `thalch`, `oldpeak`, `slope`, and `ca`
+| Project | Live demo |
+|---|---|
+| Heart Disease Prediction | [Open Streamlit app](https://machine-learning-portfolio-yvplwjtixokwsaowpeaawi.streamlit.app/) |
+| Delivery Time Predictor | [Open Streamlit app](https://machine-learning-portfolio-yvplwjtixokwsaowpeaawi.streamlit.app/) |
+| Customer Churn Prediction | [Open Streamlit app](https://machine-learning-portfolio-yvplwjtixokwsaowpeaawi.streamlit.app/) |
+| Emotion Intelligence | [Open Streamlit app](https://machine-learning-portfolio-ldcbeszryex4ncjmvpdesm.streamlit.app/) |
 
-These features are predictive associations identified through permutation importance and do not establish causality.
+> The Streamlit applications provide interactive interfaces for exploring model inputs, predictions, and project workflows.
 
-## Project Portfolio
+## Projects
 
-| Project | Description | Key technologies |
+| Project | Domain | Description |
 |---|---|---|
-| [Heart Disease Prediction](heart_disease_prediction) | End-to-end clinical risk-prediction pipeline with robust evaluation, interpretability, and a FastAPI inference service | Python, scikit-learn, XGBoost, Pandas, FastAPI, Joblib |
-| [Emotion Intelligence](emotion_Intelligence) | Six-class emotion classification system using a Bidirectional GRU neural network and Streamlit interface | Python, TensorFlow/Keras, BiGRU, Streamlit |
-| [Customer Churn Prediction](customer-churn-prediction) | Customer churn classification model with evaluation metrics and an interactive Streamlit dashboard | Python, scikit-learn, Pandas, Streamlit |
-| [Food Prediction](Food-prediction) | Food prediction model | Python, scikit-learn |
+| [Heart Disease Prediction](heart_disease_prediction) | Clinical risk prediction | Leakage-safe heart-disease risk-prediction pipeline using XGBoost, calibration analysis, subgroup evaluation, permutation importance, leave-one-site-out validation, and a FastAPI inference service |
+| [Delivery Time Predictor](delivery-time-predictor) | Regression / operations | Delivery-time prediction model with an interactive Streamlit interface |
+| [Customer Churn Prediction](customer-churn-prediction) | Customer analytics | Churn-prediction model with model evaluation and an interactive Streamlit user interface |
+| [Emotion Intelligence](emotion_Intelligence) | Natural language processing | Six-class emotion-classification system using a BiGRU sequence model and a Streamlit interface |
+| [Food Prediction](Food-prediction) | Classification | Food-category prediction model |
+
+## Featured Project: Heart Disease Prediction
+
+### Problem statement
+
+Cardiovascular disease risk prediction requires models that are not only accurate but also reliable across patient populations and clinical sites. This project develops a leakage-safe prediction pipeline for heart-disease risk using multi-site clinical records.
+
+### Dataset
+
+| Attribute | Details |
+|---|---|
+| Dataset size | 100,000 clinical records |
+| Data structure | Multi-site clinical dataset |
+| Validation strategy | Leave-one-site-out validation |
+| Primary task | Binary heart-disease risk prediction |
+
+### Modeling approach
+
+The project uses an XGBoost-based classification pipeline with structured clinical features. Model development follows a leakage-safe workflow, ensuring that preprocessing and feature-selection decisions do not leak information from validation or test data into training.
+
+### Performance
+
+| Metric | Result |
+|---|---:|
+| Selected model | XGBoost |
+| Test ROC-AUC | **0.970** |
+| Test recall | **89.7%** |
+| Test specificity | **92.2%** |
+
+### Evaluation methodology
+
+The evaluation strategy assesses more than aggregate accuracy:
+
+- **Calibration analysis** — evaluates whether predicted probabilities align with observed outcomes.
+- **PR-AUC** — measures performance under class imbalance and highlights precision-recall trade-offs.
+- **Bootstrap confidence intervals** — quantifies uncertainty around reported performance metrics.
+- **Subgroup analysis** — examines model behavior across clinically relevant patient groups.
+- **Permutation importance** — identifies the relative contribution of input features to predictions.
+- **Leave-one-site-out validation** — tests generalization to unseen clinical sites and reduces the risk of site-specific overfitting.
+
+## Heart Disease API
+
+The heart-disease project includes a FastAPI service for serving model predictions through a documented HTTP interface.
+
+### Installation
+
+```bash
+cd heart_disease_prediction
+python -m pip install -r requirements.txt
+```
+
+### Start the API
+
+```bash
+python backend.py
+```
+
+### API documentation
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+## Run Applications Locally
+
+### Heart Disease Prediction
+
+```bash
+cd heart_disease_prediction
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+### Delivery Time Predictor
+
+```bash
+cd delivery-time-predictor
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+### Customer Churn Prediction
+
+```bash
+cd customer-churn-prediction
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+### Emotion Intelligence
+
+```bash
+cd emotion_Intelligence
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+## Technology Stack
+
+| Layer | Technologies |
+|---|---|
+| Machine learning | scikit-learn, XGBoost |
+| Deep learning | BiGRU |
+| Regression | Delivery-time prediction models |
+| API serving | FastAPI |
+| User interfaces | Streamlit |
+| Model evaluation | Calibration, PR-AUC, bootstrap confidence intervals, permutation importance |
+| Validation | Leave-one-site-out validation |
 
 ## Repository Structure
 
 ```text
 machine-learning-portfolio/
 ├── heart_disease_prediction/
-│   ├── main.py                 # Training, evaluation, and artifact generation
-│   ├── backend.py              # FastAPI inference service
-│   ├── app.py                  # Streamlit dashboard
-│   ├── artifacts/              # Model, metrics, plots, and reports
-│   └── heart_disease.csv       # Dataset
-├── emotion_Intelligence/
-│   ├── main.py                 # BiGRU training pipeline
-│   ├── app.py                  # Streamlit application
-│   └── artifacts/              # Trained model and tokenizer
+│   ├── backend.py
+│   ├── app.py
+│   └── requirements.txt
+├── delivery-time-predictor/
 ├── customer-churn-prediction/
-│   ├── customer_churn.py       # Churn modeling pipeline
-│   ├── ui.py                   # Streamlit dashboard
-│   └── model_metrics.csv       # Evaluation results
-└── Food-prediction/
-    └── ...                     # Food prediction project files
+├── emotion_Intelligence/
+├── Food-prediction/
+└── README.md
 ```
 
-## Technical Skills
+## Engineering Principles
 
-- **Machine Learning:** Classification, model selection, hyperparameter tuning, cross-validation, threshold optimization, calibration, and feature importance
-- **Deep Learning:** Bidirectional GRU, sequence modeling, text classification, and Keras model development
-- **Data Engineering:** Data validation, cleaning, missing-value handling, feature engineering, and reproducible preprocessing
-- **Evaluation:** ROC-AUC, PR-AUC, precision, recall, specificity, F1 score, Brier score, confusion matrices, bootstrap confidence intervals, and subgroup analysis
-- **Interpretability:** Permutation importance, calibration analysis, and model cards
-- **Deployment:** FastAPI, REST APIs, Pydantic validation, Streamlit, and Joblib model serialization
-- **Tools:** Python, Pandas, NumPy, scikit-learn, XGBoost, TensorFlow/Keras, Matplotlib, Git, and GitHub
+- **End-to-end development** — Projects span data preparation, modeling, evaluation, interpretation, and deployment.
+- **Leakage-safe validation** — Validation workflows are designed to prevent information leakage and inflated performance estimates.
+- **Evaluation beyond accuracy** — Models are assessed using calibration, uncertainty, subgroup behavior, and feature attribution.
+- **Interactive deployment** — Models are made accessible through Streamlit applications and, where applicable, FastAPI services.
+- **Reproducibility** — Dependencies, commands, and execution steps are documented for local reproduction.
 
-## Getting Started
+## License
 
-### Prerequisites
+This repository is intended for educational and portfolio purposes. Add a license file before public distribution if reuse permissions need to be defined.
 
-- Python 3.10 or later
-- Git
-- pip
+## Author
 
-### Clone the repository
-
-```bash
-git clone https://github.com/rj1230/machine-learning-portfolio.git
-cd machine-learning-portfolio
-```
-
-### Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it:
-
-**Windows PowerShell**
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux**
-
-```bash
-source .venv/bin/activate
-```
-
-### Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Run the Heart Disease API
-
-The heart-disease project includes a FastAPI service that loads the trained model and returns a risk probability and classification for patient input.
-
-```bash
-cd heart_disease_prediction
-python backend.py
-```
-
-Open the interactive API documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-FastAPI automatically provides Swagger UI-based interactive documentation at `/docs`, allowing endpoints to be explored and tested from the browser. [75][79]
-
-### Example prediction request
-
-```json
-{
-  "age": 58,
-  "sex": "male",
-  "cp": "asymptomatic",
-  "trestbps": 140,
-  "chol": 240,
-  "fbs": false,
-  "restecg": "normal",
-  "thalch": 150,
-  "exang": true,
-  "oldpeak": 2.3,
-  "slope": "flat",
-  "ca": 2,
-  "thal": "reversible_defect"
-}
-```
-
-### Example response
-
-```json
-{
-  "probability": 0.8421,
-  "prediction": 1,
-  "risk_label": "high_risk",
-  "threshold": 0.652,
-  "model_name": "xgboost"
-}
-```
-
-## Run the Streamlit Applications
-
-### Heart disease dashboard
-
-```bash
-cd heart_disease_prediction
-python -m streamlit run app.py
-```
-
-### Emotion intelligence app
-
-```bash
-cd emotion_Intelligence
-python -m streamlit run app.py
-```
-
-### Customer churn dashboard
-
-```bash
-cd customer-churn-prediction
-python -m streamlit run ui.py
-```
-
-## Retrain the Heart Disease Model
-
-```bash
-cd heart_disease_prediction
-python main.py train --data heart_disease.csv --n-iter 10 --n-jobs 1
-```
-
-Optional: remove exact duplicate rows before training.
-
-```bash
-python main.py train --data heart_disease.csv --n-iter 10 --n-jobs 1 --drop-duplicate-rows
-```
-
-## Responsible AI
-
-The heart-disease model is intended for educational and portfolio purposes only. It is **not a medical device** and must not be used for diagnosis, treatment, or clinical decision-making.
-
-Real-world deployment would require clinical validation, bias and fairness assessment, monitoring for data drift, regulatory review, and ongoing model governance.
+**Raj Rajput**  
+GitHub: [@rj1230](https://github.com/rj1230)
