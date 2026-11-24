@@ -1,8 +1,20 @@
+# Python
 .venv/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .env
+
+# ML artifacts and experiment tracking
 mlruns/
-/artifacts/
+**/artifacts/
+**/reports/
+*.joblib
+*.pkl
+*.keras
+
+# Datasets
+*.csv
+
+# OS files
 Thumbs.db
